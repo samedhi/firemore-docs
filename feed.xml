@@ -1,4 +1,233 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="http://blogawesome.com/" rel="self" type="application/rss+xml"/><title>My Awesome Blog</title><link>http://blogawesome.com/</link><description>This blog is awesome</description><lastBuildDate>Wed, 26 Jun 2019 20:17:08 -0700</lastBuildDate><generator>clj-rss</generator><item><guid>http://blogawesome.com/firemore-docs/posts-output/2016-01-07-docs/</guid><link>http://blogawesome.com/firemore-docs/posts-output/2016-01-07-docs/</link><title>Quick Start Guide</title><description>&lt;p&gt;This intro only documents a subset of Cryogen's features. For additional documentation please see the &lt;a href='http://cryogenweb.org'&gt;cryogen site&lt;/a&gt;.&lt;/p&gt;&lt;h2 id="features"&gt;Features&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Blog posts and pages with Markdown (default) or AsciiDoc&lt;/li&gt;&lt;li&gt;Tags&lt;/li&gt;&lt;li&gt;Table of contents generation&lt;/li&gt;&lt;li&gt;Plain HTML page templates&lt;/li&gt;&lt;li&gt;Code syntax highlighting&lt;/li&gt;&lt;li&gt;Disqus support&lt;/li&gt;&lt;li&gt;Sitemap generation&lt;/li&gt;&lt;li&gt;RSS feed generation&lt;/li&gt;&lt;li&gt;Sass/SCSS compilation&lt;/li&gt;&lt;li&gt;Klipse Integration&lt;/li&gt;&lt;/ul&gt;&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;&lt;p&gt;You will need &lt;a href='https://github.com/technomancy/leiningen'&gt;Leiningen&lt;/a&gt; 2.5.0 or above installed.&lt;/p&gt;&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;&lt;h3 id="creating&amp;#95;a&amp;#95;new&amp;#95;site"&gt;Creating a New Site&lt;/h3&gt;&lt;p&gt;A new site can be created using the Cryogen template as follows:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein new cryogen my-blog
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="http://blogawesome.com/" rel="self" type="application/rss+xml"/><title>My Awesome Blog</title><link>http://blogawesome.com/</link><description>This blog is awesome</description><lastBuildDate>Wed, 26 Jun 2019 20:31:32 -0700</lastBuildDate><generator>clj-rss</generator><item><guid>http://blogawesome.com/firemore-docs/posts-output/2019-06-26-README/</guid><link>http://blogawesome.com/firemore-docs/posts-output/2019-06-26-README/</link><title>README</title><description>&lt;h1 id="firemore"&gt;firemore&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Firemore&lt;/strong&gt; is a library for writing &lt;a href='https://clojure.org/'&gt;clojure&lt;/a&gt;(&lt;a href='https://clojurescript.org/'&gt;script&lt;/a&gt;) applications using &lt;a href='https://cloud.google.com/firestore'&gt;Google Firestore&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Main features include:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;A direct API to the &lt;a href='https://firebase.google.com/docs/firestore'&gt;Firestore Database&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;Automatic (and customizable) conversions between clojure maps and Firestore "json" documents.&lt;/li&gt;&lt;li&gt;A channels based API for getting and observing Firestore documents.&lt;/li&gt;&lt;li&gt;A binding between the Firestore Cloud database and a local clojure atom (great for om/re-frame/reagent).&lt;/li&gt;&lt;/ol&gt;&lt;h1 id="table&amp;#95;of&amp;#95;contents"&gt;Table of Contents&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;&lt;a href='#getting_started'&gt;Getting Started&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#usage'&gt;Usage&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#api'&gt;API&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#contributing'&gt;Contributing&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#credits'&gt;Credits&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#license'&gt;License&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h1 id="&lt;a&amp;#95;id="getting_started"&gt;&lt;/a&gt;getting&amp;#95;started"&gt;&lt;a id="getting_started"&gt;&lt;/a&gt;Getting Started&lt;/h1&gt;&lt;p&gt;To use firemore in an existing project, simply add this to your dependencies in project.clj (&lt;a href='https://github.com/technomancy/leiningen'&gt;lein&lt;/a&gt;) or build.boot (&lt;a href='https://github.com/boot-clj/boot'&gt;boot&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;!!!!! [firemore "x.y.z"] @clojars !!!!!!&lt;/p&gt;&lt;h1 id="&lt;a&amp;#95;id="usage"&gt;&lt;/a&gt;usage"&gt;&lt;a id="usage"&gt;&lt;/a&gt;Usage&lt;/h1&gt;&lt;p&gt;;; TODO: Transparently convert arrays to Sets and back. Auto index for containment?&lt;/p&gt;&lt;p&gt;;; TODO: Transparently convert keywords to strings and back? Maybe write some checksum at front of keyword?&lt;/p&gt;&lt;p&gt;;; TODO: Add in metadata whether value you see if realized or not.&lt;/p&gt;&lt;p&gt;The following is a walkthrough of the main features of firemore.&lt;/p&gt;&lt;h2 id="references"&gt;References&lt;/h2&gt;&lt;p&gt;Read the documentation on [documents, collections, and references](https://firebase.google.com/docs/firestore/data-model) (just the linked page). Go ahead. I'll wait.&lt;/p&gt;&lt;p&gt;As you just read, a Firestore reference is a javascript object with a bunch of functions attached to it. In firemore a reference is a vector of keywords or strings with length at least 1.&lt;/p&gt;&lt;p&gt;So, the following document reference in firestore&lt;pre&gt;&lt;code class="javascript"&gt;db.collection&amp;#40;'users'&amp;#41;.doc&amp;#40;'alovelace'&amp;#41;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;Becomes this in firemore:&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#91;&amp;quot;users&amp;quot; &amp;quot;alovelace&amp;quot;&amp;#93; ;; OR
+&amp;#91;:users  &amp;quot;alovelace&amp;quot;&amp;#93;  ;; OR
+&amp;#91;&amp;quot;users&amp;quot; :alovelace&amp;#93;  ;; OR
+&amp;#91;:users  :alovelace&amp;#93;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;Note that keywords and strings are interchangeable. I prefer to use keywords in collection (odd) positions and strings in id (even) positions, but it is up to you.&lt;/p&gt;&lt;p&gt;Note that a vector with an even number of keywords and strings must be a reference to a document, while a vector with a odd number of keywords and strings must be a reference to a collection. So &lt;code&gt;&amp;#91;:users&amp;#93;&lt;/code&gt; is a reference to the &lt;code&gt;users&lt;/code&gt; collection. While &lt;code&gt;&amp;#91;:users &amp;quot;alovelace&amp;quot;&amp;#93;&lt;/code&gt; is a reference to a document &lt;em&gt;within&lt;/em&gt; the &lt;code&gt;users&lt;/code&gt; collection.&lt;/p&gt;&lt;h2 id="read&amp;#95;from&amp;#95;firestore"&gt;Read from Firestore&lt;/h2&gt;&lt;p&gt;The map to your right shows the data currently in your section of the firestore database. I have taken the liberty of setting you up with some starting data so that we can practice reading it using firemore.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;def user-atm &amp;#40;get-user-atom&amp;#41;&amp;#41;
+
+&amp;#40;def user-id &amp;#40;:uid @user-atm&amp;#41;&amp;#41;
+
+&amp;#40;def luke-reference &amp;#91;:users user-id :characters &amp;quot;luke&amp;quot;&amp;#93;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note that the reference begins with &lt;code&gt;&amp;#91;:users user-id&amp;#93;&lt;/code&gt;. This is because I have set up &lt;a href='https://firebase.google.com/docs/firestore/security/get-started'&gt;security rules&lt;/a&gt; so you and only you may read and write to a location under &lt;code&gt;users/&amp;lt;user-id&amp;gt;&lt;/code&gt; in the Firestore database. This is necessary because this database is being used by everyone currently looking at this documentation. The security rule allows me to carve out a little place in the database for you to play without conflicting with others.&lt;/p&gt;&lt;p&gt;Is Luke Skywalker a force user? I can never remember? Let's check!&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;go
+  &amp;#40;let &amp;#91;luke &amp;#40;&amp;lt;! &amp;#40;get luke-reference&amp;#41;&amp;#41;&amp;#93;
+
+    &amp;#40;println &amp;quot;luke -&amp;gt;&amp;quot; luke&amp;#41;
+
+    &amp;#40;println &amp;quot;Is luke a force user? &amp;quot; &amp;#40;:force-user? luke&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;That's right, he does have force powers! Couldn't remember.&lt;/p&gt;&lt;p&gt;A firemore document is a regular &lt;a href='https://clojure.org/reference/data_structures#Maps'&gt;clojure map&lt;/a&gt;. There is a fair amount of code to allow for conversion between a Firestore document and a firemore document (see &lt;a href='#clojure_interop'&gt;Clojure Interop&lt;/a&gt; for details).&lt;/p&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;get reference&amp;#41;
+
+Returns a channel. If a document exist at reference, it will be put! upon the
+channel. If no document exist at reference, then :firemore/no-document will be
+put! on the channel. The channel will then be closed.
+
+Note:
+put! -&amp;gt;  clojure.core.async/put!
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;But what if I want to watch Luke change over time? What if I want to be notified as Luke changes? Rather than getting Luke once, let's watch him from now on.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;async/go
+  &amp;#40;let &amp;#91;luke-chan &amp;#40;watch luke-reference&amp;#41;
+        initial-luke &amp;#40;&amp;lt;! luke-chan&amp;#41;&amp;#93;
+    &amp;#40;println &amp;quot;Initial Luke -&amp;gt;&amp;quot; initial-luke&amp;#41;
+
+    &amp;#40;println &amp;quot;Merging in Luke's teenage occupation...&amp;quot;&amp;#41;
+    &amp;#40;merge! luke-reference {:occupation &amp;quot;farmboy&amp;quot;}&amp;#41;
+    &amp;#40;println &amp;quot;teenage Luke -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! luke-chan&amp;#41;&amp;#41;
+
+    &amp;#40;println &amp;quot;Changing Luke's adult occupation...&amp;quot;&amp;#41;
+    &amp;#40;write! luke-reference &amp;#40;assoc initial-luke :occupation &amp;quot;jedi&amp;quot;&amp;#41;&amp;#41;
+    &amp;#40;println &amp;quot;adult Luke -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! luke-chan&amp;#41;&amp;#41;
+
+    &amp;#40;println &amp;quot;Changing to Lukes final occupation after episode 7&amp;quot;&amp;#41;
+    &amp;#40;write! luke-reference &amp;#40;assoc initial-luke :occupation &amp;quot;One with the Force&amp;quot;}&amp;#41;&amp;#41;
+    &amp;#40;println &amp;quot;Episode 7 Luke -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! luke-chan&amp;#41;&amp;#41;
+
+    &amp;#40;println &amp;quot;Remove luke from the Firestore database&amp;quot;&amp;#41;
+    &amp;#40;delete! luke-reference&amp;#41;
+    &amp;#40;println &amp;quot;Removed Luke reference -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! luke-chan&amp;#41;&amp;#41;
+
+    ;; Remember to close the channel when you are done with it!
+    &amp;#40;close! luke-chan&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In the above example, the first value of Luke pulled from &lt;code&gt;luke-chan&lt;/code&gt; is placed within &lt;code&gt;initial-luke&lt;/code&gt;. This is the current value of Luke and is equivalent to what you would get with &lt;code&gt;get&lt;/code&gt;. Every time I &lt;code&gt;write!&lt;/code&gt;, &lt;code&gt;merge!&lt;/code&gt; or &lt;code&gt;delete!&lt;/code&gt; upon the &lt;code&gt;luke-reference&lt;/code&gt;, I get the updated version of Luke placed within the &lt;code&gt;luke-chan&lt;/code&gt;.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;watch reference&amp;#41;
+
+Returns a channel. If a document exist at reference, it will be put! upon
+the channel. If no document exist at reference, then :firemore/no-document will
+be put! on the channel. As the document at reference is updated through
+time, the channel will put! the newest value of the document &amp;#40;if it exist&amp;#41;
+or :firemore/no-document &amp;#40;if it does not&amp;#41; upon the channel.
+
+Important: close! the channel to clean up the state machine feeding this
+channel. Failure to close the channel will result in a memory leak.
+
+Note:
+put! -&amp;gt;  clojure.core.async/put!
+close! -&amp;gt;  clojure.core.async/close!
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="write&amp;#95;to&amp;#95;firestore"&gt;Write to Firestore&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;write! reference m&amp;#41;
+
+Returns a channel. Overwrites the document at reference with m.  Iff an error
+occurs when writing m to Firestore, then the error will be put! upon the
+channel. The channel will then be closed.
+
+Note:
+put! -&amp;gt;  clojure.core.async/put!
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;merge! reference m&amp;#41;
+
+Returns a channel. Updates &amp;#40;merges in novelty&amp;#41; the document at reference with m.
+Iff an error occurs when writing m to Firestore, then the error will be put!
+upon the channel. The channel will then be closed.
+
+Note:
+put! -&amp;gt;  clojure.core.async/put!
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;delete! reference&amp;#41;
+
+Returns a channel. Iff an error occurs when deleting reference from Firestore,
+then the error will be put! upon the channel. The channel will then be closed.
+
+Note:
+put! -&amp;gt; clojure.core.async/put!
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="queries"&gt;Queries&lt;/h2&gt;&lt;p&gt;First &lt;a href='https://firebase.google.com/docs/firestore/query-data/queries'&gt;read the documentation on queries&lt;/a&gt;. As you just read, in Firestore queries are built from a collection reference. In firemore queries are built by adding a query map to the end of the reference vector.&lt;/p&gt;&lt;p&gt;So this in Firestore&lt;pre&gt;&lt;code class="javascript"&gt;db.collection&amp;#40;&amp;quot;cities&amp;quot;&amp;#41;.where&amp;#40;&amp;quot;state&amp;quot;, &amp;quot;==&amp;quot;, &amp;quot;CA&amp;quot;&amp;#41;.where&amp;#40;&amp;quot;population&amp;quot;, &amp;quot;&amp;lt;&amp;quot;, 1000000&amp;#41;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;becomes this in firemore&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#91;:cities {:where &amp;#91;&amp;#91;&amp;quot;state&amp;quot; &amp;quot;==&amp;quot; &amp;quot;CA&amp;quot;&amp;#93;
+                  &amp;#91;&amp;quot;population&amp;quot; &amp;quot;&amp;lt;&amp;quot; 1000000&amp;#93;&amp;#93;}&amp;#93;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;Queries also support the &lt;a href='https://firebase.google.com/docs/firestore/query-data/order-limit-data'&gt;orderBy and limit option&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;So this in Firestore&lt;pre&gt;&lt;code class="javascript"&gt;citiesRef.where&amp;#40;&amp;quot;population&amp;quot;, &amp;quot;&amp;gt;&amp;quot;, 100000&amp;#41;.orderBy&amp;#40;&amp;quot;population&amp;quot;&amp;#41;.orderBy&amp;#40;&amp;quot;state&amp;quot;, &amp;quot;desc&amp;quot;&amp;#41;.limit&amp;#40;2&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;becomes this in firemore&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#91;:cities {:where &amp;#91;&amp;#91;&amp;quot;population&amp;quot; &amp;quot;&amp;lt;&amp;quot; 1000000&amp;#93;&amp;#93;
+          :order &amp;#91;&amp;#91;&amp;quot;population&amp;quot; &amp;quot;asc&amp;quot;&amp;#93; &amp;#91;&amp;quot;state&amp;quot; &amp;quot;desc&amp;quot;&amp;#93;&amp;#93;
+          :limit 2}&amp;#93;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;If you have only one &lt;code&gt;:where&lt;/code&gt; clause predicate, it is fine to specify it as a single vector. So this is also equivalent to the above.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#91;:cities {:where &amp;#91;&amp;quot;population&amp;quot; &amp;quot;&amp;lt;&amp;quot; 1000000&amp;#93;
+          :order &amp;#91;&amp;#91;&amp;quot;population&amp;quot; &amp;quot;asc&amp;quot;&amp;#93; &amp;#91;&amp;quot;state&amp;quot; &amp;quot;desc&amp;quot;&amp;#93;&amp;#93;
+          :limit 2}&amp;#93;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In a similar fashion, the &lt;code&gt;:order&lt;/code&gt; values are expanded into 2 element vectors of &lt;code&gt;&amp;#91;&amp;lt;property&amp;gt; &amp;quot;asc&amp;quot;&amp;#93;&lt;/code&gt; if they are specified as strings. So the following is also equivalent to the above.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#91;:cities {:where &amp;#91;&amp;quot;population&amp;quot; &amp;quot;&amp;lt;&amp;quot; 1000000&amp;#93;
+          :order &amp;#91;&amp;quot;population&amp;quot; &amp;#91;&amp;quot;state&amp;quot; &amp;quot;desc&amp;quot;&amp;#93;&amp;#93;
+          :limit 2}&amp;#93;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Finally, the &lt;code&gt;:start-at&lt;/code&gt;, &lt;code&gt;:start-after&lt;/code&gt;, and &lt;code&gt;end-at&lt;/code&gt; options from &lt;a href='https://firebase.google.com/docs/firestore/query-data/query-cursors'&gt;paginate data with query-cursors&lt;/a&gt; are also supported as options.&lt;/p&gt;&lt;h2 id="build&amp;#95;local&amp;#95;state&amp;#95;atom"&gt;Build Local State Atom&lt;/h2&gt;&lt;p&gt;Let's say you needed to keep track of the best of the &lt;a href='https://en.wikipedia.org/wiki/The_Three_Stooges'&gt;Three Stooges&lt;/a&gt;? How might you go about doing this with our current knowledge?&lt;/p&gt;&lt;pre&gt;&lt;code class="HTML"&gt;The best stooge is &amp;lt;span id=&amp;quot;best-stooge-value&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;.
+
+&amp;lt;button id=&amp;quot;moe-button&amp;quot;&amp;gt;&amp;lt;/button&amp;gt;
+&amp;lt;button id=&amp;quot;larry-button&amp;quot;&amp;gt;&amp;lt;/button&amp;gt;
+&amp;lt;button id=&amp;quot;curly-button&amp;quot;&amp;gt;&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;def best-stooge-reference &amp;#91;:users user-id :best &amp;quot;stooge&amp;quot;&amp;#93;&amp;#41;
+
+&amp;#40;def best-stooge-chan &amp;#40;watch best-stooge-reference&amp;#41;&amp;#41;
+
+&amp;#40;go-loop &amp;#91;&amp;#93;
+  &amp;#40;when-let &amp;#91;{:keys &amp;#91;value&amp;#93;} &amp;#40;&amp;lt;! best-stooge-chan&amp;#41;&amp;#93;
+    &amp;#40;aset! &amp;#40;js/document.querySelector &amp;quot;#best-stooge-value&amp;quot;&amp;#41; &amp;quot;value&amp;quot; value&amp;#41;
+    &amp;#40;recur&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;doseq &amp;#91;stooge &amp;#91;&amp;quot;moe&amp;quot; &amp;quot;larry&amp;quot; &amp;quot;curly&amp;quot;&amp;#93;&amp;#93;
+  &amp;#40;aset! &amp;#40;js/document.querySelector &amp;#40;str &amp;quot;#&amp;quot; stooge &amp;quot;-button&amp;quot;&amp;#41;&amp;#41;
+         &amp;quot;onclick&amp;quot;
+         &amp;#40;fn &amp;#91;event&amp;#93; &amp;#40;merge! counter-reference {:value stooge}&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The previous code does works. However, it is an annoyance to have to create a channel from a reference, create a &lt;code&gt;go-loop&lt;/code&gt; that consumes from said channel, and close the channel in order to properly dispose of the &lt;code&gt;go-loop&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Firemore has a solution to that.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;def atm &amp;#40;atom {:paths {&amp;#91;:friends&amp;#93; &amp;#91;:app user-id :friends&amp;#93;
+                        &amp;#91;:enemies&amp;#93; &amp;#91;:app user-id :enemies&amp;#93;
+                        &amp;#91;:favorite :dog&amp;#93; &amp;#91;:app user-id :favorite &amp;quot;dog&amp;quot;&amp;#93;
+                        &amp;#91;:favorite :cat&amp;#93; &amp;#91;:app user-id :favorite &amp;quot;cat&amp;quot;&amp;#93;}}&amp;#41;&amp;#41;
+
+;; Allows us to see the changes to the atom over time
+&amp;#40;add-watch atm :print-firestore-changes
+  &amp;#40;fn &amp;#91;&amp;#95; &amp;#95; old new&amp;#93;
+    &amp;#40;let &amp;#91;only-in-old only-in-new &amp;#95;&amp;#93; &amp;#40;clojure.data/diff old new&amp;#41;&amp;#93;
+      &amp;#40;when-not &amp;#40;empty? only-in-old&amp;#41;
+        &amp;#40;println &amp;quot;Removed:&amp;quot;&amp;#41;
+        &amp;#40;doseq &amp;#91;o only-in-old&amp;#93;
+          &amp;#40;println &amp;quot;-&amp;quot; o&amp;#41;&amp;#41;&amp;#41;
+      &amp;#40;when-not &amp;#40;empty? only-in-new&amp;#41;
+        &amp;#40;println &amp;quot;Added:&amp;quot;&amp;#41;
+        &amp;#40;doseq &amp;#91;n only-in-new&amp;#93;
+          &amp;#40;println &amp;quot;-&amp;quot; n&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+
+;; Updates figure-1 to the newest value
+&amp;#40;add-watch atm :display-atom
+  &amp;#40;fn &amp;#91;&amp;#95; &amp;#95; &amp;#95; new&amp;#93; &amp;#40;display-atom &amp;quot;figure-1&amp;quot; new&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;hydrate atm&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As you can see in &lt;strong&gt;figure-1&lt;/strong&gt;, all of the path/reference (key/value) pairs within &lt;code&gt;:paths&lt;/code&gt; have become realized things within &lt;code&gt;:firestore&lt;/code&gt;. If you remove a key from &lt;code&gt;:paths&lt;/code&gt; it will remove the same path from within &lt;code&gt;:firestore&lt;/code&gt;. Similarly if you add a new path/reference to &lt;code&gt;:paths&lt;/code&gt; it will add a corresponding location in &lt;code&gt;:firestore&lt;/code&gt;.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;hydrate atom&amp;#41;
+
+Returns nil. Noop if atom is already hydrated. Adds a watch that causes atom to
+automatically sync its :paths and :references root keys. :paths should be a
+key value pair where the key is a path and the value is a reference. :paths can
+have keys added and removed. :references will throw a error if you attempt to
+modify them.
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;unhydrate atom&amp;#41;
+
+Returns nil. Noop if atom is already unhydrated.
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="authentication"&gt;Authentication&lt;/h2&gt;&lt;p&gt;Most apps require some way of authenticating a user. Firestore includes a fairly robust &lt;a href='https://firebase.google.com/docs/auth'&gt;Authentication System&lt;/a&gt;. Use of the built in authentication system will allow you to complete your project more quickly and securely than rolling your own solutions.&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;def user-chan &amp;#40;get-user&amp;#41;&amp;#41;
+
+&amp;#40;go
+  ;; The value within user-atm is currently :firemore/logged-out as you are not logged in.
+  &amp;#40;assert &amp;#40;= :firemore/logged-out &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;&amp;#41;
+
+  ;; Let's log you in as the anonymous user
+  &amp;#40;login-as-anonymous!&amp;#41;
+
+  ;; having done that, let's check what user looks like now
+  &amp;#40;println &amp;quot;&amp;#40;1&amp;#41; your current user is -&amp;gt; &amp;quot; &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;
+
+  ;; Let's demonstrate logging in and out a few times. Note that your `:uid`
+  ;; changes every time you login again with a new anonymous user.
+  &amp;#40;login-as-anonymous!&amp;#41;
+  &amp;#40;println &amp;quot;&amp;#40;2&amp;#41; your current user is -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;
+
+  &amp;#40;login-as-anonymous!&amp;#41;
+  &amp;#40;println &amp;quot;&amp;#40;3&amp;#41; your current user is -&amp;gt; &amp;quot; &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;
+
+  ;; Of course, you can also logout, let's demonstrate this.
+  &amp;#40;logout!&amp;#41;
+  &amp;#40;println &amp;quot;&amp;#40;4&amp;#41; your current user is -&amp;gt; &amp;quot; &amp;#40;= :firemore/logged-out &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The above code logs you in as various anonymous users. Anonymous does NOT mean unidentified (you have a unique user id in &lt;code&gt;:uid&lt;/code&gt;). Anonymous does however mean that we don't know your &lt;code&gt;:email&lt;/code&gt;, &lt;code&gt;:name&lt;/code&gt;, or &lt;code&gt;:photo&lt;/code&gt;. Anonymous means that if you were to logout from this account or loose access to this system, there would be no way for you to log back in as this anonymous user (though you could always login as a new anonymous user).&lt;/p&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;get-user&amp;#41;
+
+Returns a channel containing either a user-map or nil. Atom will contain nil when
+no user is logged into Firestore. Atom will contain a user-map if a user is
+currently logged in. user-map has the following form:
+
+{:uid &amp;lt;application&amp;#95;unique&amp;#95;id&amp;gt;
+ :email &amp;lt;user&amp;#95;email&amp;#95;address&amp;gt;
+ :name &amp;lt;user&amp;#95;identifier&amp;gt;
+ :photo &amp;lt;url&amp;#95;to&amp;#95;a&amp;#95;photo&amp;#95;for&amp;#95;this&amp;#95;user&amp;gt;}
+
+Note: :uid will always be present. :email, :name, :photo may be present depending
+on sign-in provider and/or whether you have set their values.
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;logout!&amp;#41;
+
+Log out the currently logged in user &amp;#40;if any&amp;#41;.
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;login-as-anonymous!&amp;#41;
+
+Log out any existing user, then log in a new anonymous user.
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code class="clojure"&gt;&amp;#40;go
+  &amp;#40;def user-chan &amp;#40;get-user&amp;#41;&amp;#41;
+
+  &amp;#40;assert &amp;#40;= :firemore/logged-out &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;&amp;#41;
+
+  &amp;#40;login-as-anonymous!&amp;#41;
+  &amp;#40;println &amp;quot;Check that we have a user -&amp;gt;&amp;quot; &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;
+
+  &amp;#40;delete-user!&amp;#41;
+  &amp;#40;println &amp;quot;logged out and user is deleted -&amp;gt;&amp;quot; &amp;#40;= :firemore/logged-out
+                                                  &amp;#40;&amp;lt;! user-chan&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Most applications will also need to allow users to delete their accounts. This is trivial in firemore. Note that this only deletes the user entry from the Firestore Authentication, it does not delete any associated data within the Firestore Database. For more on cleaning up after user deletion, see &lt;a href='https://firebase.google.com/docs/auth/extend-with-functions#trigger_a_function_on_user_deletion'&gt;Trigger a function on user deletion&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;delete-user!&amp;#41;
+
+Deletes the user specified by user-id from Firestore. This removes all sign-in
+providers for this user, as well as deleting the data in the user information
+map returned by &amp;#40;get-user-atom&amp;#41;. Note that this does NOT delete information
+relating to the user from the actual Firestore database.
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="&lt;a&amp;#95;id="clojure_interop"&gt;&lt;/a&gt;&amp;#95;clojure&amp;#95;interop"&gt;&lt;a id="clojure_interop"&gt;&lt;/a&gt; Clojure Interop&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Usage:
+&amp;#40;fire-&amp;gt;clj js-object&amp;#41;
+&amp;#40;fire-&amp;gt;clj js-object opts&amp;#41;
+
+Returns the clojure form of the js-object document from Firestore. opts
+allows you to modify the conversion.
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;clj-&amp;gt;fire document&amp;#41;
+&amp;#40;clj-&amp;gt;fire document options&amp;#41;
+
+Returns a javascript object that can be passed to Firestore for writes. opts
+allows you to modify the conversion.
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id="&lt;a&amp;#95;id="api"&gt;&lt;/a&gt;api"&gt;&lt;a id="api"&gt;&lt;/a&gt;API&lt;/h1&gt;&lt;h1 id="&lt;a&amp;#95;id="contributing"&gt;&lt;/a&gt;contributing"&gt;&lt;a id="contributing"&gt;&lt;/a&gt;Contributing&lt;/h1&gt;&lt;p&gt;Pull Request are always welcome and appreciated. If you want to discuss firemore, I am available most readily:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;On &lt;a href='https://clojurians.slack.com/messages/C073DKH9P/'&gt;clojurians.slack.com under #firemore&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;Through the &lt;a href='https://github.com/samedhi/firemore/issues'&gt;issue tracking system&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;By email at stephen@read-line.com .&lt;/li&gt;&lt;/ol&gt;&lt;h1 id="&lt;a&amp;#95;id="credits"&gt;&lt;/a&gt;credits"&gt;&lt;a id="credits"&gt;&lt;/a&gt;Credits&lt;/h1&gt;&lt;p&gt;&lt;a href='https://samedhi.github.io/'&gt;Stephen Cagle&lt;/a&gt; is a Senior Software Engineer at &lt;a href='https://www.dividendfinance.com/'&gt;Dividend Finance&lt;/a&gt; in San Francisco, CA. He is the original (currently only, but always accepting PRs!) creator/maintainer of firemore. &lt;a href='https://github.com/samedhi'&gt;@github&lt;/a&gt; &lt;a href='https://www.linkedin.com/in/stephen-cagle-92b895102/'&gt;@linkedin&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;img src="asset/img/stephen_and_nugget.jpg" alt="Man (Stephen Cagle) holding beer &amp; small dog (Chihuahua)" /&gt;&lt;/p&gt;&lt;h1 id="&lt;a&amp;#95;id="license"&gt;&lt;/a&gt;license"&gt;&lt;a id="License"&gt;&lt;/a&gt;License&lt;/h1&gt;&lt;p&gt;MIT License&lt;/p&gt;&lt;p&gt;Copyright (c) 2019 Stephen Cagle&lt;/p&gt;</description><pubDate>Wed, 26 Jun 2019 00:00:00 -0700</pubDate></item><item><guid>http://blogawesome.com/firemore-docs/posts-output/2016-01-07-docs/</guid><link>http://blogawesome.com/firemore-docs/posts-output/2016-01-07-docs/</link><title>Quick Start Guide</title><description>&lt;p&gt;This intro only documents a subset of Cryogen's features. For additional documentation please see the &lt;a href='http://cryogenweb.org'&gt;cryogen site&lt;/a&gt;.&lt;/p&gt;&lt;h2 id="features"&gt;Features&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Blog posts and pages with Markdown (default) or AsciiDoc&lt;/li&gt;&lt;li&gt;Tags&lt;/li&gt;&lt;li&gt;Table of contents generation&lt;/li&gt;&lt;li&gt;Plain HTML page templates&lt;/li&gt;&lt;li&gt;Code syntax highlighting&lt;/li&gt;&lt;li&gt;Disqus support&lt;/li&gt;&lt;li&gt;Sitemap generation&lt;/li&gt;&lt;li&gt;RSS feed generation&lt;/li&gt;&lt;li&gt;Sass/SCSS compilation&lt;/li&gt;&lt;li&gt;Klipse Integration&lt;/li&gt;&lt;/ul&gt;&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;&lt;p&gt;You will need &lt;a href='https://github.com/technomancy/leiningen'&gt;Leiningen&lt;/a&gt; 2.5.0 or above installed.&lt;/p&gt;&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;&lt;h3 id="creating&amp;#95;a&amp;#95;new&amp;#95;site"&gt;Creating a New Site&lt;/h3&gt;&lt;p&gt;A new site can be created using the Cryogen template as follows:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein new cryogen my-blog
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id="running&amp;#95;the&amp;#95;server"&gt;Running the Server&lt;/h3&gt;&lt;p&gt;The web server can be started from the &lt;code&gt;my-blog&lt;/code&gt; directory using the &lt;code&gt;lein-ring&lt;/code&gt; plugin:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein ring server
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The server will watch for changes in the &lt;code&gt;content&lt;/code&gt; and &lt;code&gt;themes&lt;/code&gt; folders and recompile the content automatically.&lt;/p&gt;&lt;p&gt;You can also generate the content without bringing up a server via:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein run
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id="site&amp;#95;configuration"&gt;Site Configuration&lt;/h3&gt;&lt;p&gt;The site configuration file is found at &lt;code&gt;content/config.edn&lt;/code&gt;, this file looks as follows:&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;{:site-title           &amp;quot;My Awesome Blog&amp;quot;
